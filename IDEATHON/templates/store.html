@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Seeds & Pesticides Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+body { font-family:'Poppins',sans-serif; background:#f5f6fa; padding:30px; }
+h1 { text-align:center; margin-bottom:30px; }
+.products { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; max-width:800px; margin:auto; }
+.card { background:white; padding:20px; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.1); }
+.buy-btn { width:100%; margin-top:10px; padding:10px; background:#27ae60; color:white; border:none; border-radius:8px; cursor:pointer; }
+.buy-btn:hover { background:#219150; }
+input.quantity-input { width:60px; margin-top:10px; }
+</style>
+</head>
+<body>
+<h1>🌾 Farmer Store</h1>
+<div class="products">
+    {% for item in store_items %}
+    <div class="card">
+        <div class="product-name">{{ item.name }}</div>
+        <div class="price">₹ {{ item.price }}</div>
+        <form action="/buy-store-item" method="POST">
+            <input type="hidden" name="name" value="{{ item.name }}">
+            <input type="hidden" name="price" value="{{ item.price }}">
+            <input type="number" name="quantity" value="1" min="1" class="quantity-input">
+            <button class="buy-btn" type="submit">Buy</button>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+<div style="text-align:center; margin-top:20px;">
+    <a href="{{ url_for('farmer') }}">← Back to Farmer Page</a>
+</div>
+</body>
+</html>

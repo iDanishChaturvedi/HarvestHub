@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Farmer Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { margin:0; font-family:'Poppins',sans-serif; background: linear-gradient(120deg,#2ecc71,#27ae60); min-height:100vh; display:flex; justify-content:center; align-items:center; padding:20px; }
+        .card { background:#fff; width:100%; max-width:420px; padding:30px; border-radius:16px; box-shadow:0 15px 40px rgba(0,0,0,0.2); }
+        .card h1 { text-align:center; margin-bottom:25px; color:#2c3e50; }
+        label { font-size:14px; font-weight:500; color:#555; }
+        input { width:100%; padding:12px; margin-top:6px; margin-bottom:18px; border-radius:8px; border:1px solid #ccc; font-size:14px; outline:none; }
+        input:focus { border-color:#27ae60; }
+        button { width:100%; padding:14px; background:#27ae60; border:none; border-radius:10px; color:white; font-size:16px; font-weight:600; cursor:pointer; transition:0.3s; }
+        button:hover { background:#219150; }
+        .link { text-align:center; margin-top:20px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+        .link a { text-decoration:none; color:#27ae60; font-weight:500; padding:6px 12px; border:1px solid #27ae60; border-radius:8px; transition:0.3s; }
+        .link a:hover { background:#27ae60; color:white; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h1>Enter product details </h1>
+    <form action="/add-product" method="POST">
+        <label>Product Name</label>
+        <input type="text" name="name" placeholder="e.g. Tomato" required>
+        <label>Price (₹ per kg)</label>
+        <input type="number" name="price" placeholder="e.g. 25" min="1" required>
+        <label>Quantity (kg)</label>
+        <input type="number" name="quantity" placeholder="e.g. 100" min="1" required>
+        <label>Farmer Name</label>
+        <input type="text" name="farmer" placeholder="e.g. Ramesh" required>
+        <button type="submit">➕ Add Product</button>
+    </form>
+    <div class="link">
+        <a href="{{ url_for('products') }}">View Customer Products →</a>
+        <a href="{{ url_for('store') }}">Visit Store →</a>
+    </div>
+</div>
+</body>
+</html>
